@@ -24,7 +24,7 @@ class Booking(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     roomid = models.TextField()
     etage = models.IntegerField(default = -1)
-    date = models.DateField(datetime.strptime("2003-07-08", "%Y-%m-%d").date())
+    date = models.TextField(default = "no date")
 
     class Meta:
         ordering = ['created']
