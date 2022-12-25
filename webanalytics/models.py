@@ -22,7 +22,7 @@ STYLE_CHOICES = sorted([(item, item) for item in get_all_styles()])
 class Booking(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     roomid = models.TextField()
-    etage = models.IntegerField()
+    etage = models.IntegerField(-1)
 
     class Meta:
         ordering = ['created']
