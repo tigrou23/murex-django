@@ -51,4 +51,4 @@ from webanalytics.models import Booking, LANGUAGE_CHOICES, STYLE_CHOICES
 class BookingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Booking
-        fields = ['id','roomid', 'etage', 'date']
+        fields = ['id','roomid', 'etage']
