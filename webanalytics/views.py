@@ -8,6 +8,8 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from webanalytics.models import Booking
 from webanalytics.serializers import BookingSerializer
+from webanalytics.models import Inactivity
+from webanalytics.serializers import InactivitySerializer
 
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -124,4 +126,47 @@ def booking_detail(request, pk, format=None):
 
     elif request.method == 'DELETE':
         booking.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET', 'POST'])
+def inactivity_list(request,format=None):
+    """
+    List all code snippets, or create a new snippet.
+    """
+    if request.method == 'GET':
+        inactivity = Inactivity.objects.all()
+        serializer = InactivitySerializer(inactivity, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+        serializer = InactivitySerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def inactivity_detail(request, pk, format=None):
+    """
+    Retrieve, update or delete a code snippet.
+    """
+    try:
+        inactivity = Inactivity.objects.get(pk=pk)
+    except Inactivity.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = InactivitySerializer(inactivity)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        serializer = InactivitySerializer(inactivity, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        inactivity.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)

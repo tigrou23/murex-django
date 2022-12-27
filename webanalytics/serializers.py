@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
 from webanalytics.models import Booking, LANGUAGE_CHOICES, STYLE_CHOICES
+from webanalytics.models import Inactivity, LANGUAGE_CHOICES, STYLE_CHOICES
 
 
 # class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -52,3 +53,8 @@ class BookingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Booking
         fields = ['id','roomid', 'etage', 'date']
+
+class InactivitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Inactivity
+        fields = ['date']

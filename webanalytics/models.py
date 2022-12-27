@@ -27,3 +27,10 @@ class Booking(models.Model):
 
     class Meta:
         ordering = ['created']
+
+class Inactivity(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    date = models.TextField(default = "pas de date")
+
+    class Meta:
+        ordering = ['created']
