@@ -57,7 +57,7 @@ class BookingSerializer(serializers.ModelSerializer):
 class InactivitySerializer(serializers.ModelSerializer):
     class Meta:
         model = Inactivity
-        fields = ['date']
+        fields = ['date', 'etage_kdmap']
 
 class TestSerializer(serializers.ModelSerializer):
     class Meta:
