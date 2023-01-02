@@ -34,3 +34,10 @@ class Inactivity(models.Model):
 
     class Meta:
         ordering = ['created']
+
+class Test(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    texte = models.TextField(default = "pas de texte")
+
+    class Meta:
+        ordering = ['created']

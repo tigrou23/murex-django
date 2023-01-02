@@ -58,3 +58,8 @@ class InactivitySerializer(serializers.ModelSerializer):
     class Meta:
         model = Inactivity
         fields = ['date']
+
+class TestSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Inactivity
+        fields = ['texte']

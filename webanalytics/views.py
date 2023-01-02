@@ -10,6 +10,8 @@ from webanalytics.models import Booking
 from webanalytics.serializers import BookingSerializer
 from webanalytics.models import Inactivity
 from webanalytics.serializers import InactivitySerializer
+from webanalytics.models import Test
+from webanalytics.serializers import TestSerializer
 
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -170,3 +172,46 @@ def inactivity_detail(request, pk, format=None):
     elif request.method == 'DELETE':
         inactivity.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET', 'POST'])
+def test_list(request,format=None):
+    """
+    List all code snippets, or create a new snippet.
+    """
+    if request.method == 'GET':
+        test = Test.objects.all()
+        serializer = TestSerializer(test, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+        test = TestSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def test_detail(request, pk, format=None):
+    """
+    Retrieve, update or delete a code snippet.
+    """
+    try:
+        test = Test.objects.get(pk=pk)
+    except Inactivity.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = TestSerializer(test)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        serializer = TestSerializer(test, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        test.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT) 
