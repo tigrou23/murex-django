@@ -2,7 +2,7 @@ from django.contrib.auth.models import User, Group
 from rest_framework import serializers
 from webanalytics.models import Booking, LANGUAGE_CHOICES, STYLE_CHOICES
 from webanalytics.models import Inactivity, LANGUAGE_CHOICES, STYLE_CHOICES
-
+from webanalytics.models import Test, LANGUAGE_CHOICES, STYLE_CHOICES
 
 # class UserSerializer(serializers.HyperlinkedModelSerializer):
 #     class Meta:
@@ -61,5 +61,5 @@ class InactivitySerializer(serializers.ModelSerializer):
 
 class TestSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Inactivity
+        model = Test
         fields = ['texte']
