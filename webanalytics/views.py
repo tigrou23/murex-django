@@ -198,7 +198,7 @@ def test_detail(request, pk, format=None):
     """
     try:
         test = Test.objects.get(pk=pk)
-    except Inactivity.DoesNotExist:
+    except Test.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
