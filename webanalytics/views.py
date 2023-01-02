@@ -184,7 +184,7 @@ def test_list(request,format=None):
         return Response(serializer.data)
 
     elif request.method == 'POST':
-        test = TestSerializer(data=request.data)
+        serializer = TestSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -214,4 +214,4 @@ def test_detail(request, pk, format=None):
 
     elif request.method == 'DELETE':
         test.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT) 
+        return Response(status=status.HTTP_204_NO_CONTENT)
