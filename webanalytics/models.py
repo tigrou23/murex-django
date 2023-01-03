@@ -31,7 +31,7 @@ class Booking(models.Model):
 class Inactivity(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     date = models.TextField(default = "pas de date")
-    etage_kdmap = models.TextField(default = "pas d'identification de la kdmap")
+    etage_kdmap = models.IntegerField(default = -50)
 
     class Meta:
         ordering = ['created']
