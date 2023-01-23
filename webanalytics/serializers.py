@@ -62,4 +62,4 @@ class InactivitySerializer(serializers.ModelSerializer):
 class TestSerializer(serializers.ModelSerializer):
     class Meta:
         model = Test
-        fields = ['texte', 'etage_kdmap']
+        fields = ['date', 'etage_kdmap', 'ip']

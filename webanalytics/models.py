@@ -38,8 +38,9 @@ class Inactivity(models.Model):
 
 class Test(models.Model):
     created = models.DateTimeField(auto_now_add=True)
-    texte = models.TextField(default = "pas de texte")
+    date = models.TextField(default = "pas de texte")
     etage_kdmap = models.IntegerField(default = -50)
+    ip = models.TextField(default = "pas d'IP")
 
     class Meta:
         ordering = ['created']
