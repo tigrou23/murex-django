@@ -22,7 +22,7 @@ STYLE_CHOICES = sorted([(item, item) for item in get_all_styles()])
 class Booking(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     roomid = models.TextField()
-    etage = models.IntegerField(default = -1)
+    etage = models.TextField(default = "pas d'etage")
     date = models.TextField(default = "pas de date")
 
     class Meta:
@@ -31,7 +31,7 @@ class Booking(models.Model):
 class Inactivity(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     date = models.TextField(default = "pas de date")
-    etage_kdmap = models.IntegerField(default = -50)
+    etage_kdmap = models.TextField(default = "pas d'etage")
 
     class Meta:
         ordering = ['created']
@@ -39,7 +39,7 @@ class Inactivity(models.Model):
 class Test(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     date = models.TextField(default = "pas de texte")
-    etage_kdmap = models.IntegerField(default = -50)
+    etage_kdmap = models.TextField(default = "pas d'etage")
     ip = models.TextField(default = "pas d'IP")
 
     class Meta:
