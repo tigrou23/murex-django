@@ -43,4 +43,4 @@ class Test(models.Model):
     ip = models.TextField(default = "pas d'IP")
 
     class Meta:
-        ordering = ['created']
+        ordering = ['-date']
